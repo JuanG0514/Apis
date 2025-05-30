@@ -14,4 +14,4 @@ app.use(helmet.contentSecurityPolicy({
             scriptSrc: ["`self`","unsafe-inline"],
 
         }
-}))
+}));
