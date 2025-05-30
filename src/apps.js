@@ -12,6 +12,21 @@ app.use(helmet.contentSecurityPolicy({
         directives: {
             defaultsrc: ["`self`"],
             scriptSrc: ["`self`","unsafe-inline"],
-
-        }
+            styleSrc: ["`self`","`unsafe-inline`"],
+            imgSrc: ["`self`","`data:`","https:"],
+        },
 }));
+
+// Política de Referencia
+app.use(helmet.referrerPolicy({ policy: 'strict-origin-when-cross-origin' }));
+
+// Middleware para parsear JSON
+app.use(express.json());
+
+// Rutas de productos
+app.use('/api/productos', productoRoutes);
+
+// Middleware de manejo de errores
+app.use(errorHandler);
+
+module.exports = app;
